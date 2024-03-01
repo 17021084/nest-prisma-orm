@@ -35,7 +35,7 @@ export class UsersController {
   async getUserById(@Param('id', ParseIntPipe) id: number) {
     const user = this.userService.getUsersById(id);
     if (!user) {
-      throw new HttpException('User not found', 404);
+      throw new HttpException('User not found', 400);
     }
     return user;
   }

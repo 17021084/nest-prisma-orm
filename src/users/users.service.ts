@@ -31,6 +31,7 @@ export class UsersService {
             notificationsOn: true,
           },
         },
+        posts: true,
       },
     });
   }
@@ -45,6 +46,7 @@ export class UsersService {
             notificationsOn: true,
           },
         },
+        posts: true,
       },
     });
   }

@@ -31,7 +31,12 @@ export class UsersService {
             notificationsOn: true,
           },
         },
-        posts: true,
+        posts: {
+          select: {
+            id: true,
+          },
+        },
+        groupPosts: true,
       },
     });
   }
@@ -47,6 +52,7 @@ export class UsersService {
           },
         },
         posts: true,
+        groupPosts: true,
       },
     });
   }

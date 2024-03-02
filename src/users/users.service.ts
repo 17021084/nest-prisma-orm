@@ -31,6 +31,12 @@ export class UsersService {
             notificationsOn: true,
           },
         },
+        posts: {
+          select: {
+            id: true,
+          },
+        },
+        groupPosts: true,
       },
     });
   }
@@ -45,6 +51,8 @@ export class UsersService {
             notificationsOn: true,
           },
         },
+        posts: true,
+        groupPosts: true,
       },
     });
   }
@@ -65,5 +73,15 @@ export class UsersService {
     const findUser = await this.getUsersById(id);
     if (!findUser) throw new HttpException('User not found', 400);
     return this.prisma.user.delete({ where: { id } });
+  }
+
+  async updateSettingsByUserId(
+    userId: number,
+    data: Prisma.UserSettingUpdateInput,
+  ) {
+    const findUser = await this.getUsersById(userId);
+    if (!findUser) throw new HttpException('User not found', 400);
+    if (!findUser.UserSetting) throw new HttpException('Not Settings', 400);
+    return this.prisma.userSetting.update({ where: { userId }, data });
   }
 }
